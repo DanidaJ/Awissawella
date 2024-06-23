@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>login
+    <title>Add Doctor
     </title>
     <link rel="stylesheet" href="./../assets/css/style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css" integrity="sha512-6c4nX2tn5KbzeBJo9Ywpa0Gkt+mzCzJBrE1RB6fmpcsoN+b/w/euwIMuQKNyUoU/nToKN3a8SgNOtPrbW12fug==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -12,7 +12,7 @@
 
 <body>
     <h1 align="center">DOCTOR</h1>
-    <form action="<?php echo base_url() ?>index.php/Doctor/Signup" method="post">
+    <form action="<?php echo base_url() ?>index.php/Doctor/addDoctor" method="post">
         <table align="center" width="400px">
             <tr height="50px">
                 <td>

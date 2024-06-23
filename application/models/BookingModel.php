@@ -1,15 +1,6 @@
 <?php
 
-
-
-
 class BookingModel extends CI_Model{
-
-
-
-
-
-
 
     // This method communicates with the database and get the bookings inserted.
     // SELECT * FROM booking
@@ -26,3 +17,4 @@ class BookingModel extends CI_Model{
         return $query->result();
     }
 }
+?>
