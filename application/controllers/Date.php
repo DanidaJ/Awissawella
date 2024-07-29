@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Doctor extends CI_Controller {
+class Date extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -21,29 +21,37 @@ class Doctor extends CI_Controller {
 	public function __construct()
     {
         parent::__construct();
-        $this->load->model('DoctorModel');
+        $this->load->model('DateModel');
     }
 
 
 	public function index()
 	{
-		$this->load->view('pages/doctor_view');
+		$data['dates'] = $this->DateModel->getDates();
+		$this->load->view('pages/filterDate_view',$data);
 	}
 
 
-	public function addDoctor()
+	public function addDate()
     {
-        $doctor_name = $this->input->post('doctor_name');
-        $doctor_phonenumber = $this->input->post('doctor_phonenumber');
-        $doctor_email = $this->input->post('doctor_email');
+        $disabled = $this->input->post('disabled');
 
         $data = array(
-            'doctor_name' => $doctor_name,
-            'doctor_phoneNumber' => $doctor_phonenumber,
-            'doctor_email' => $doctor_email
+            'disabled' => $disabled,
+            
         );
 
-        $result = $this->DoctorModel->insertDoctor($data);
+        $result = $this->DateModel->insertDate($data);
     }
 
+	public function showDates() {
+        $disabled = $this->input->get('disabled');
+
+            $data['dates'] = $this->DateModel->getDates();
+        
+        $json_dates = json_encode($data);
+        $this->output->set_content_type('application/json')
+                        ->set_output($json_dates);
+
+}
 }

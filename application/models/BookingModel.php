@@ -16,5 +16,10 @@ class BookingModel extends CI_Model{
         $query = $this->db->get('booking');
         return $query->result();
     }
+    public function getBookingsByDoctorName($doctorName) {
+        $this->db->where('doctorName', $doctorName);
+        $query = $this->db->get('booking');
+        return $query->result();
+}
 }
 ?>

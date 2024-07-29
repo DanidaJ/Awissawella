@@ -29,4 +29,18 @@ class Booking extends CI_Controller
         $this->output->set_content_type('application/json')
                         ->set_output($json_data);
     }
+    public function filteredBookings1() {
+        $doctorName = $this->input->get('doctorName');
+
+        if ($doctorName == 'all') {
+            $data['bookings'] = $this->BookingModel->getBookings();
+        } else {
+            $data['bookings'] = $this->BookingModel->getBookingsByDoctorName($doctorName);
+        }
+        
+        $json_data = json_encode($data);
+        $this->output->set_content_type('application/json')
+                        ->set_output($json_data);
+    }
+    
 }

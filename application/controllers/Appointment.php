@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class front extends CI_Controller
+class appointment extends CI_Controller
 {
 
 	/**
@@ -24,15 +24,15 @@ class front extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('FrontModel');
+		$this->load->model('AppointmentModel');
 	}
 	public function index()
 	{
-		$this->load->view('pages/front_page');
+		$this->load->view('pages/appointment_page');
 	}
 
 
-	// localhost/Awissawella/index.php/front/book
+	// localhost/Awissawella/index.php/appointment/book
 	public function book()
 	{
 		$patientName = $this->input->post('patientName');
@@ -47,7 +47,7 @@ class front extends CI_Controller
 			'bookingTime' => $bookingTime
 		);
 
-		$result = $this->FrontModel->insertBooking($data);
+		$result = $this->AppointmentModel->insertBooking($data);
 
 		if (!$result) {
 			$output = array(
@@ -68,6 +68,7 @@ class front extends CI_Controller
 		// if a record already exists with the given time slot -> return false
 		// if you don't have a record -> return the id of the inserted row.
 
-		// redirect('front');
+		// redirect('appointment');
 	}
+
 }

@@ -1,6 +1,6 @@
 <?php
 
-class FrontModel extends CI_Model
+class AppointmentModel extends CI_Model
 {
     public function insertBooking($data)
     {
@@ -24,4 +24,6 @@ class FrontModel extends CI_Model
     {
         echo $data['id'];
     }
+   
+
 }
