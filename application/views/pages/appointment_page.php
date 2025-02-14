@@ -1,43 +1,66 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-  <!-- Include the Flatpickr CSS and JS files -->
+  <!-- Include the Flatpickr CSS and Bootstrap -->
   <link rel="stylesheet" href="./../assets/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="./../assets/css/finalstyles.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+ <!-- Favicon-->
+ <link rel="icon" type="image/x-icon" href="./../assets/images/medical.ico" />
+       
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="./../assets/css/updatedcss.css" rel="stylesheet" />
+        <title>Book Appointent</title>
 </head>
 
 <body>
 
-<div class="w3-bar w3-black w3-hide-small">
-            <a href="http://localhost/Awissawella/index.php/booking" class="w3-bar-item w3-button">Bookings</a>
-            <a href="http://localhost/Awissawella/index.php/doctor" class="w3-bar-item w3-button">Add Doctor</a>
-            <a href="http://localhost/Awissawella/index.php/login" class="w3-bar-item w3-button">Add Patient</a>
-      
-            <a href="#" class="w3-bar-item w3-button">Add Scan</a>
-            <a href="http://localhost/Awissawella/index.php/Home#" class="w3-bar-item w3-button w3-right"><i class="fa fa-home"></i></a>
-           
-            <a href="#" class="w3-bar-item w3-button w3-right"><i class="fa fa-search"></i></a>
-          </div>
-<script>
+<!-- NavBar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+                <div class="container px-5">
+                    <a class="navbar-brand" href="http://localhost/Awissawella/index.php/home"><span class="fw-bolder text-primary">ASAB System</span></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
+                            <li class="nav-item"><a class="nav-link" href="http://localhost/Awissawella/index.php/appointment">Book Appointment</a></li>
+                            <li class="nav-item"><a class="nav-link" href="http://localhost/Awissawella/index.php/booking">Bookings</a></li>
+                            <li class="nav-item"><a class="nav-link" href="http://localhost/Awissawella/index.php/login">Add Patient</a></li>
+                            <li class="nav-item"><a class="nav-link" href="http://localhost/Awissawella/index.php/doctor">Add Doctor</a></li>
+                            <li class="nav-item"><a class="nav-link" href="http://localhost/Awissawella/index.php/date">Disable Dates</a></li>
+                        </ul>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
 
-var globalArray = [];
-globalArray[0]="2024-08-08"
+  <h1 align="center">Book an Appointment</h1>
 
-
-</script>
-  <h1>Book an Appointment</h1>
+  
   <form>
-    <label for="bookingTime">Booking (date/time)</label>
-    <!-- <input type="datetime-local" id="bookingTime" name="bookingTime"> -->
-    <input type="text" id="bookingTime" name="bookingTime">
+<!-- form to book an appointment -->
+  <table width="400px" align="center">
+  <tr height="50px">
+    <td>
+    <label for="bookingDay">Booking Date</label>
+    </td>
 
+     <td>
+    <input type="text" class="form-control" id="bookingDay" name="bookingDay">
+     </td>
+  </tr>
+  <tr height="50px">
+  <td>
+    <label for="bookingTime">Booking Time</label>
+  </td>
+  <td>
+  <input type="text" class="form-control" id="bookingTime" name="bookingTime">
+  </td>
+  </tr>
 
-    <table width="400px">
-      <tr height="50px">
+  <tr height="50px">
         <td>
           <label>Patient Name</label>
         </td>
@@ -45,34 +68,66 @@ globalArray[0]="2024-08-08"
           <input type="text" name="patientName" class="form-control" id="name">
         </td>
       </tr>
-    </table>
+    
 
-    <h2>The select Element</h2>
-
-    <label for="scanType">Choose Scan Type:</label>
-    <select id="scanType" class="form-control" name="scanType">
+   <center>
+      <tr height="50px">
+      <td><label>Select Scan Type</label></td>
+        <td>
+    <select id="scanType"  class="form-control" name="scanType" >
+    <option value="none" selected disabled hidden> Select Scan Type</option>
       <option value="CT Scan">CT Scan</option>
       <option value="MRI">MRI</option>
       <option value="PET Scan">PET Scan</option>
     </select>
+
+      </td>
+      </tr>
     <br>
     <br>
-    <label for="doctorName">Select Doctor</label>
+    <tr height="50px">
+      <td><label>Select Doctor Name</label></td>
+      <td>
     <select id="doctorName" class="form-control"  name="doctorName">
+    <option value="none" selected disabled hidden>Select Doctor</option>
       <option value="Peter">Peter</option>
       <option value="Kate">Kate</option>
-      <option value="Lil">Lil</option>
+      <option value="Lily">Lily</option>
     </select>
+      </td>
+    </tr>
+   </center>
+    <tr height="50px">
+
+<td>
+    <input type="reset" />
+</td>
+<td>
     <button type="submit" name="submit">Submit </button>
+</tr>
+
+   </table>
   </form>
 
-
-
-  <div id="data-container">
-    <!-- Data will be displayed here -->
-  </div>
-
-
+ <!-- Footer-->
+ <footer class="bg-white py-4 mt-auto">
+            <div class="container px-5">
+                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                    <div class="col-auto"><div class="small m-0">Copyright &copy; ASAB System 2024</div></div>
+                    <div class="col-auto">
+                        <a class="small" href="#!">Privacy</a>
+                        <span class="mx-1">&middot;</span>
+                        <a class="small" href="#!">Terms</a>
+                        <span class="mx-1">&middot;</span>
+                        <a class="small" href="#!">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="./../assets/js/scripts.js"></script>
 
   <!-- Import Ajax -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -120,59 +175,31 @@ globalArray[0]="2024-08-08"
 
 
     });
+    var dataArray = [];
 
-
-
-    // Initialize Flatpickr with custom options
-    flatpickr("#bookingTime", {
-      enableTime: true,
-      dateFormat: "Y-m-d H:i",
-      time_24hr: true,
-      minuteIncrement: 30,
-      minDate: new Date(),
-      disable: [
-        {
-            from: globalArray[0],
-            to: "2024-08-15"
-        },
-      ]
-    });
-  </script>
-
-
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-  $(document).ready(function() {
+    $(document).ready(function() {
     console.log("test");
+    
+    // sending the ajax request to get the data (disabled dates- which the hospital will be closed)
     $.ajax({
       url: 'http://localhost/Awissawella/index.php/date/showDates',
       type: 'GET',
       success: function(data) {
         console.log(data);
         var container = $('#data-container');
-        var dataArray = [];
-        if (Array.isArray(data)) {
-            data.forEach(function(item) {
-              var itemElement = $('<p></p>').text(JSON.stringify(item));
-              container.append(itemElement);
-            });
-         
-          } else {
-            var itemElement = $('<p></p>').text(JSON.stringify(data));
-            container.append(itemElement);
-            dataArray.push(data);
+        // var dataArray = [];
+        // pushing the dates to the dataArray
+        for (const date of data['dates']){
+          dataArray.push(date['disabled'])
+        }
 
-         
-          }
-       
-        if (dataArray.length > 0) {
-            var firstElement = dataArray[0];
-            var firstElementContent = $('<p></p>').text(JSON.stringify(firstElement));
-            container.append('<h3>First Element:</h3>').append(firstElementContent);
-          } else {
-            container.append('<p>No data available.</p>');
-          }
+        console.log(dataArray)
+        flatpickr("#bookingDay", {
+      dateFormat: "Y-m-d",
+      minDate: new Date(),
+      disable: dataArray //disabling the dates in the data array
+    });
+        
         },
       
      error: function(data){
@@ -181,10 +208,18 @@ globalArray[0]="2024-08-08"
       
     });
   });
-</script>
- 
 
+    // Initialize Flatpickr for booking time
 
+    flatpickr("#bookingTime", {
+      enableTime: true,
+    noCalendar: true,
+    dateFormat: "H:i",
+    minuteIncrement: 30
+    
+    });
+    
+  </script>
 
 </body>
 

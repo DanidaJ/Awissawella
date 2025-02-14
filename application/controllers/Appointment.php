@@ -1,54 +1,45 @@
-<?php
+<<?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class appointment extends CI_Controller
 {
-
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/userguide3/general/urls.html
-	 */
-
-
+	// Constructor to load the AppointmentModel when the controller is instantiated
 	public function __construct()
 	{
 		parent::__construct();
 		$this->load->model('AppointmentModel');
 	}
+
+	// Method to load the appointment page view
 	public function index()
 	{
 		$this->load->view('pages/appointment_page');
 	}
 
-
-	// localhost/Awissawella/index.php/appointment/book
+	// Method to handle the booking process
+	// This will be accessed via localhost/Awissawella/index.php/appointment/book
 	public function book()
 	{
+		// Retrieve form data using POST method
 		$patientName = $this->input->post('patientName');
 		$scanType = $this->input->post('scanType');
 		$doctorName = $this->input->post('doctorName');
+		$bookingDay = $this->input->post('bookingDay');
 		$bookingTime = $this->input->post('bookingTime');
 
+		// Create an associative array with the form data
 		$data = array(
 			'patientName' => $patientName,
 			'scanType' => $scanType,
 			'doctorName' => $doctorName,
+			'bookingDay' => $bookingDay,
 			'bookingTime' => $bookingTime
 		);
 
+		// Attempt to insert the booking into the database using the model
 		$result = $this->AppointmentModel->insertBooking($data);
 
+		// Prepare the output message based on the result of the booking attempt
 		if (!$result) {
 			$output = array(
 				'status' => false,
@@ -61,14 +52,11 @@ class appointment extends CI_Controller
 			);
 		}
 		
-		// send a json response
+		// Send a JSON response back to the client
 		$this->output->set_content_type('application/json');
 		$this->output->set_output(json_encode($output));
 
-		// if a record already exists with the given time slot -> return false
-		// if you don't have a record -> return the id of the inserted row.
-
-		// redirect('appointment');
+		// The JSON response will indicate whether the booking was successful or not.
 	}
-
 }
+

@@ -2,51 +2,82 @@
 <html lang="en">
 
 <head>
-<link rel="stylesheet" href="./../assets/css/bootstrap.min.css" />
-<link rel="stylesheet" href="./../assets/css/finalstyles.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css" integrity="sha512-6c4nX2tn5KbzeBJo9Ywpa0Gkt+mzCzJBrE1RB6fmpcsoN+b/w/euwIMuQKNyUoU/nToKN3a8SgNOtPrbW12fug==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/fontawesome.min.css" integrity="sha512-pvr7xUq+1V77GWmZVvQbM5mozl2iouCzyJG3xxxJPoGQ3HlxHUmMHxlnw4vFUNX1gj80WH4XO7a2un+XQZNkJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <!-- Include the Flatpickr CSS and Bootstrap -->
+         <link href="./../assets/css/bootstrap.min.css"  rel="stylesheet"/>
+         <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
+         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+         <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="./../assets/images/medical.ico" />
+        <!-- Custom Google font-->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="./../assets/css/updatedcss.css" rel="stylesheet" />
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking View</title>
 </head>
 
 <body>
-
-<div class="w3-bar w3-black w3-hide-small">
-            <a href="http://localhost/Awissawella/index.php/booking" class="w3-bar-item w3-button">Bookings</a>
-            <a href="http://localhost/Awissawella/index.php/doctor" class="w3-bar-item w3-button">Add Doctor</a>
-            <a href="http://localhost/Awissawella/index.php/login" class="w3-bar-item w3-button">Add Patient</a>
-            <a href="#" class="w3-bar-item w3-button">Add Scan</a>
-           
-            <a href="http://localhost/Awissawella/index.php/home" class="w3-bar-item w3-button w3-right"><i class="fas fa-home"></i></a>
-          </div>
-    <select id="scanTypeFilter">
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+                <div class="container px-5">
+                    <a class="navbar-brand" href="http://localhost/Awissawella/index.php/home"><span class="fw-bolder text-primary">ASAB System</span></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
+                            <li class="nav-item"><a class="nav-link" href="http://localhost/Awissawella/index.php/appointment">Book Appointment</a></li>
+                            <li class="nav-item"><a class="nav-link" href="http://localhost/Awissawella/index.php/booking">Bookings</a></li>
+                            <li class="nav-item"><a class="nav-link" href="http://localhost/Awissawella/index.php/login">Add Patient</a></li>
+                            <li class="nav-item"><a class="nav-link" href="http://localhost/Awissawella/index.php/doctor">Add Doctor</a></li>
+                            <li class="nav-item"><a class="nav-link" href="http://localhost/Awissawella/index.php/date">Disable Dates</a></li>
+                        </ul>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <br>
+            <br>
+            
+<div>
+            <h1 align="center">View Appointments</h1>
+            <br>
+        <!-- Select elements to filter appointments  -->
+          <br>
+          <br>
+    <select class="form-control" aria-label="Default select example" id="scanTypeFilter" >
         <option value="all">Select Scan Type</option>
         <option value="CT Scan">CT Scan</option>
         <option value="MRI">MRI</option>
         <option value="PET Scan">PET Scan</option>
     </select>
-    <br><br>
-    <select id="doctorNameFilter">
+    <br>
+    
+    <select class="form-control" aria-label="Default select example" id="doctorNameFilter">
         <option value="all">Select Doctor</option>
-        <option value="Lil">Lil</option>
+        <option value="Lily">Lily</option>
         <option value="Peter">Peter</option>
         <option value="Kate">Kate</option>
     </select>
-    <br><br>
-    <input type="time" id="timeFilter">
-    <br><br>
-    <input type="date" id="dateFilter">
-    <br><br>
+    </div>
+    <br>
+    
+    <input type="text" class="form-control" id="dateFilter"  placeholder="Select a Date">
+    <br>
+    
+</div>
 
-    <table border class="table table-striped">
+<!-- Table to show filtered appointments -->
+    <table  id="bookings"border class="table table-striped">
         <thead>
             <tr>
                 <th>Booking ID</th>
                 <th>Patient Name</th>
                 <th>Doctor Name</th>
                 <th>Scan Type</th>
+                <th>Booking Day</th>
                 <th>Booking Time</th>
             </tr>
         </thead>
@@ -58,13 +89,33 @@
                     <td><?php echo $booking->patientName ?></td>
                     <td><?php echo $booking->doctorName ?></td>
                     <td><?php echo $booking->scanType ?></td>
+                    <td><?php echo $booking->bookingDay ?></td>
                     <td><?php echo $booking->bookingTime ?></td>
                 </tr>
             <?php } ?>
         </tbody>
     </table>
+ <!-- Footer-->
+ <footer class="bg-white py-4 mt-auto">
+            <div class="container px-5">
+                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                    <div class="col-auto"><div class="small m-0">Copyright &copy;ASAB System 2024</div></div>
+                    <div class="col-auto">
+                        <a class="small" href="#!">Privacy</a>
+                        <span class="mx-1">&middot;</span>
+                        <a class="small" href="#!">Terms</a>
+                        <span class="mx-1">&middot;</span>
+                        <a class="small" href="#!">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
 
-    Import Ajax
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="./../assets/js/scripts.js"></script>
+    <!-- Import Ajax -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -104,7 +155,9 @@
                             <td>${booking.patientName}</td>
                             <td>${booking.doctorName}</td>
                             <td>${booking.scanType}</td>
+                            <td>${booking.bookingDay}</td>
                             <td>${booking.bookingTime}</td>
+                            
                             </tr>`;
                         $('tbody').append(row);
                     };
@@ -118,7 +171,7 @@
 
                 // else send ajax request to server to get the updated bookings
                 console.log(doctorNameSelected);
-                // http://localhost/Awissawella/index.php/booking/filteredBookings?scanType=CT%20Scan
+                // http://localhost/Awissawella/index.php/booking/filteredBookings1
 
                 $.ajax({
                     url: 'http://localhost/Awissawella/index.php/booking/filteredBookings1',
@@ -149,6 +202,7 @@
                             <td>${booking.patientName}</td>
                             <td>${booking.doctorName}</td>
                             <td>${booking.scanType}</td>
+                            <td>${booking.bookingDay}</td>
                             <td>${booking.bookingTime}</td>
                             </tr>`;
                         $('tbody').append(row);
@@ -157,6 +211,57 @@
 
             })
         });
+        $(document).ready(function() {
+            $('#dateFilter').on('change', function() {
+                var dateSelected = $(this).val();
+
+                // else send ajax request to server to get the updated bookings
+                console.log(dateSelected);
+                // http://localhost/Awissawella/index.php/booking/filteredBookings2
+
+                $.ajax({
+                    url: 'http://localhost/Awissawella/index.php/booking/filteredBookings2',
+                    type: 'GET',
+                    data: {
+                        bookingDay: dateSelected
+                        
+                    },
+                    dataType: 'json'
+                }).done(function(response) {
+                    console.log("Success");
+                    console.log(response);
+
+                    // clear the table body
+                    $('tbody').empty();
+
+
+
+                    
+
+                    // Populate the table body with the filtered bookings
+                    console.log(response.bookings);
+                    for (var i = 0; i < response.bookings.length; i++) {
+                        // response.bookings.foreach(function(booking){
+                        var booking = response.bookings[i];
+                        var row = `<tr>
+                            <td>${booking.bookingId}</td>
+                            <td>${booking.patientName}</td>
+                            <td>${booking.doctorName}</td>
+                            <td>${booking.scanType}</td>
+                            <td>${booking.bookingDay}</td>
+                            <td>${booking.bookingTime}</td>
+                            </tr>`;
+                        $('tbody').append(row);
+                    };
+                });
+
+            })
+        });
+
+        //flatpickr elements
+        flatpickr("#dateFilter", {
+         dateFormat: "Y-m-d" });
+
     </script>
 
 </body>
